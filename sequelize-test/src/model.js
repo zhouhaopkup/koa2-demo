@@ -13,10 +13,38 @@ const User = seq.define('user', {
         allowNull: false
     },
     nickName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        comment: '昵称'
+    }
+    // 自动创建: createdAt 和 updatedAt
+})
+
+// 创建 Blog
+const Blog = seq.define('blog', {
+    title: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    content: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false
     }
 })
 
+// 外键关联
+Blog.belongsTo(User, {
+    // 创建外键 Blog.userId -> User.id
+    foreignKey: 'userId',
+})
+User.hasMany(Blog, {
+    foreignKey: 'userId'
+})
+
 module.exports = {
-    User
+    User,
+    Blog
 }
