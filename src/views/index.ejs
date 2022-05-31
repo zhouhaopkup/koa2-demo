@@ -7,5 +7,19 @@
   <body>
     <h1><%= title %></h1>
     <p>EJS Welcome to <%= title %></p>
+    <p><%= msg %></p>
+    <p><%= locals.name %></p>
+
+    <!-- <div>
+      <% if (isMe) { %>
+        <a href="#">at me</a>
+      <% } else { %>
+        <button>follow</button>
+      <% } %>
+    </div> -->
+
+    <%- include('widgets/user-info', { isMe })%>
+
+    <%- include('widgets/blog-list', { blogList }) %>
   </body>
 </html>
